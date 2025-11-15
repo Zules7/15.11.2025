@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fitness Pro — Siłownia</title>
+  <meta name="description" content="Fitness Pro - nowoczesna siłownia. Treningi, plany, trenerzy, cennik i rezerwacje." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ======================
+       Podstawowe ustawienia
+       ====================== */
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#ff6b6b;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --max-width:1100px;
+      --gap:20px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      background: linear-gradient(180deg, #071021 0%, #081222 60%);
+      color:#e6eef8;
+      margin:0;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:28px 18px;
+      display:flex;
+      justify-content:center;
+    }
+    .container{width:100%;max-width:var(--max-width)}
+
+    /* =============
+       Nawigacja
+       ============= */
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ffb86b);display:flex;align-items:center;justify-content:center;font-weight:800;color:#09101a}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .cta{background:var(--accent);padding:10px 16px;border-radius:10px;color:#08101a;font-weight:700;text-decoration:none}
+
+    /* mobile nav */
+    .hamburger{display:none;border:0;background:transparent;color:var(--muted);font-size:22px}
+
+    /* ==============
+       Hero
+       ============== */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-bottom:28px}
+    .hero .eyebrow{color:var(--accent);font-weight:700;letter-spacing:0.6px;margin-bottom:8px}
+    .hero h1{font-size:36px;margin:0 0 12px 0}
+    .hero p{color:var(--muted);margin:0 0 18px 0}
+    .buttons{display:flex;gap:12px}
+    .btn{padding:12px 16px;border-radius:10px;text-decoration:none;font-weight:700}
+    .btn-primary{background:var(--accent);color:#08101a}
+    .btn-outline{border:1px solid rgba(255,255,255,0.06);color:var(--muted);background:transparent}
+
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:16px;box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+    .stats{display:flex;gap:12px;margin-top:12px}
+    .stat{flex:1;background:var(--glass);padding:12px;border-radius:12px;text-align:center}
+    .stat b{display:block;font-size:18px}
+
+    /* ==============
+       Sekcje
+       ============== */
+    section{margin-bottom:28px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+    .card{background:var(--card);padding:18px;border-radius:12px}
+
+    /* trainers */
+    .trainers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .trainer img{width:100%;height:180px;object-fit:cover;border-radius:10px}
+
+    /* pricing */
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .price{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);}
+    .price h3{margin:0 0 8px 0}
+    .price large{font-weight:800;font-size:20px;display:block}
+
+    /* schedule */
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--muted)}
+
+    /* contact */
+    form{display:grid;gap:12px}
+    input,textarea,select{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:10px;color:inherit}
+    button[type="submit"]{padding:12px;border-radius:10px;border:0;background:var(--accent);color:#061018;font-weight:700}
+
+    footer{display:flex;justify-content:space-between;align-items:center;color:var(--muted);padding-top:12px;border-top:1px solid rgba(255,255,255,0.03)}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .hero .hero-card{order: -1}
+      .grid-3,.trainers,.pricing{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:680px){
+      body{padding:14px}
+      nav{display:none}
+      .hamburger{display:block}
+      .grid-3,.trainers,.pricing{grid-template-columns:1fr}
+      .hero h1{font-size:28px}
+    }
+
+    /* small utilities */
+    .muted{color:var(--muted)}
+    .center{text-align:center}
+
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden>FP</div>
+        <div>
+          <div style="font-weight:700">Fitness Pro</div>
+          <div class="muted" style="font-size:12px">Siłownia & Treningi</div>
+        </div>
+      </div>
+
+      <nav aria-label="Główne menu">
+        <a href="#oferta">Oferta</a>
+        <a href="#trenerzy">Trenerzy</a>
+        <a href="#cennik">Cennik</a>
+        <a href="#kontakt">Kontakt</a>
+        <a class="cta" href="#rezerwacja">Zarezerwuj</a>
+      </nav>
+
+      <button class="hamburger" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">OTWARTE 6:00 — 23:00</div>
+          <h1>Treningi, które przynoszą efekty.<br><span style="color:var(--accent)">Twój cel — nasza misja.</span></h1>
+          <p class="muted">Nowoczesna siłownia z trenerami personalnymi, planami dietetycznymi oraz zajęciami grupowymi. Sprawdź ofertę i umów pierwsze szkolenie.</p>
+          <div class="buttons">
+            <a class="btn btn-primary" href="#rezerwacja">Umów się</a>
+            <a class="btn btn-outline" href="#cennik">Zobacz cennik</a>
+          </div>
+
+          <div class="stats" aria-hidden>
+            <div class="stat"><b>120+</b><span class="muted">zadowolonych klientów</span></div>
+            <div class="stat"><b>30+</b><span class="muted">zajęć tygodniowo</span></div>
+            <div class="stat"><b>10</b><span class="muted">certyfikowanych trenerów</span></div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="O nas">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <div>
+              <div style="font-weight:700">Pierwszy trening gratis</div>
+              <div class="muted" style="font-size:13px">Poznaj nasze studio i trenera.</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:22px;font-weight:800">-25%</div>
+              <div class="muted" style="font-size:12px">na karnet 3-mies.</div>
+            </div>
+          </div>
+
+          <div class="card" style="display:flex;gap:12px;align-items:center">
+            <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8d2c?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=1c6a1f7a8b7f2c9b8e5a2b2c7f4d6d3a" alt="trening" style="width:120px;height:90px;object-fit:cover;border-radius:10px">
+            <div>
+              <div style="font-weight:700">Zajęcia grupowe</div>
+              <div class="muted" style="font-size:13px">Kettlebells, HIIT, Stretch</div>
+              <div style="margin-top:8px">
+                <a class="btn btn-outline" href="#oferta">Zobacz więcej</a>
+              </div>
+            </div>
+          </div>
+
+        </aside>
+      </section>
+
+      <section id="oferta">
+        <h2>Nasza oferta</h2>
+        <p class="muted">Szeroki wybór treningów dla początkujących i zaawansowanych.</p>
+        <div class="grid-3" style="margin-top:12px">
+          <div class="card">
+            <h3>Trening siłowy</h3>
+            <p class="muted">Programy pod budowę masy mięśniowej oraz poprawę siły.</p>
+            <ul class="muted">
+              <li>Indywidualne plany</li>
+              <li>Monitorowanie progresu</li>
+              <li>Wsparcie trenera</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Zajęcia grupowe</h3>
+            <p class="muted">HIIT, cardio, joga, stretching i kettlebell.</p>
+            <ul class="muted">
+              <li>Elastyczny grafik</li>
+              <li>Małe grupy</li>
+              <li>Trening motywacyjny</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Trener personalny</h3>
+            <p class="muted">Jedno na jedno z trenerem — szybsze rezultaty.</p>
+            <ul class="muted">
+              <li>Plan treningowy i żywieniowy</li>
+              <li>Analiza składu ciała</li>
+              <li>Darmowa konsultacja</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="trenerzy">
+        <h2>Trenerzy</h2>
+        <p class="muted">Poznaj naszych specjalistów, którzy Cię poprowadzą.</p>
+        <div class="trainers" style="margin-top:12px">
+          <div class="card trainer">
+            <img src="https://images.unsplash.com/photo-1554284126-3e9f0b7f8a8d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=abc123" alt="Trener Anna">
+            <h4>Anna Kowalska</h4>
+            <div class="muted">Specjalistka od treningu funkcjonalnego</div>
+          </div>
+
+          <div class="card trainer">
+            <img src="https://images.unsplash.com/photo-1549576490-b0b4831ef60a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=def456" alt="Trener Marcin">
+            <h4>Marcin Nowak</h4>
+            <div class="muted">Trener personalny — siła i masa</div>
+          </div>
+
+          <div class="card trainer">
+            <img src="https://images.unsplash.com/photo-1554326217-9fbbf1d8ad4f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=ghi789" alt="Trener Ola">
+            <h4>Ola Wiśniewska</h4>
+            <div class="muted">Zajęcia grupowe i treningi kondycyjne</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cennik">
+        <h2>Cennik</h2>
+        <p class="muted">Wybierz plan dopasowany do siebie.</p>
+        <div class="pricing" style="margin-top:12px">
+          <div class="price">
+            <h3>Wejście jednorazowe</h3>
+            <large>25 PLN</large>
+            <p class="muted">Dostęp do siłowni przez 2 godziny.</p>
+            <div style="margin-top:12px"><a class="btn btn-outline" href="#rezerwacja">Kup</a></div>
+          </div>
+
+          <div class="price">
+            <h3>Karnet miesięczny</h3>
+            <large>129 PLN</large>
+            <p class="muted">Dostęp nielimitowany + 1 konsultacja z trenerem.</p>
+            <div style="margin-top:12px"><a class="btn btn-primary" href="#rezerwacja">Kup</a></div>
+          </div>
+
+          <div class="price">
+            <h3>Karnet 3-mies.
+            </h3>
+            <large>299 PLN</large>
+            <p class="muted">Najlepszy stosunek ceny do efektów.</p>
+            <div style="margin-top:12px"><a class="btn btn-outline" href="#rezerwacja">Kup</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="grafik">
+        <h2>Grafik zajęć</h2>
+        <div class="card" style="margin-top:12px;overflow:auto">
+          <table aria-label="grafik zajęć">
+            <thead>
+              <tr>
+                <th>Dzień</th>
+                <th>08:00</th>
+                <th>10:00</th>
+                <th>18:00</th>
+                <th>20:00</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Pon</td><td>Siła</td><td>Stretch</td><td>HIIT</td><td>Open Gym</td></tr>
+              <tr><td>Wt</td><td>Cardio</td><td>Joga</td><td>Kettlebell</td><td>Box</td></tr>
+              <tr><td>Śr</td><td>Siła</td><td>Stretch</td><td>HIIT</td><td>Open Gym</td></tr>
+              <tr><td>Czw</td><td>Cardio</td><td>Joga</td><td>Kettlebell</td><td>Box</td></tr>
+              <tr><td>Pt</td><td>Siła</td><td>Stretch</td><td>HIIT</td><td>Open Gym</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="rezerwacja">
+        <h2>Rezerwacja / Kontakt</h2>
+        <p class="muted">Zarezerwuj trening lub napisz wiadomość — odpowiemy w ciągu dnia roboczego.</p>
+        <div style="display:grid;grid-template-columns:1fr 380px;gap:18px;margin-top:12px">
+          <div class="card">
+            <form id="contactForm">
+              <label>Imię i nazwisko
+                <input type="text" name="name" id="name" placeholder="Jan Kowalski" required>
+              </label>
+              <label>Telefon lub email
+                <input type="text" name="contact" id="contact" placeholder="email@example.com / 123 456 789" required>
+              </label>
+              <label>Usługa
+                <select id="service">
+                  <option>Trening personalny</option>
+                  <option>Zajęcia grupowe</option>
+                  <option>Konsultacja dietetyczna</option>
+                </select>
+              </label>
+              <label>Wiadomość
+                <textarea id="message" rows="4" placeholder="Krótka wiadomość"></textarea>
+              </label>
+              <label style="display:flex;gap:8px;align-items:center"><input id="consent" type="checkbox" required>Wyrażam zgodę na przetwarzanie danych</label>
+              <button type="submit">Wyślij rezerwację</button>
+              <div id="formMsg" class="muted" style="margin-top:8px"></div>
+            </form>
+          </div>
+
+          <aside class="card">
+            <h4>Godziny otwarcia</h4>
+            <div class="muted">Pn–Pt: 6:00 — 23:00<br>Sb–Nd: 8:00 — 20:00</div>
+            <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.04)">
+            <h4>Adres</h4>
+            <div class="muted">ul. Fitness 12, 00-001 Warszawa</div>
+            <div style="margin-top:12px">
+              <a class="btn btn-outline" href="mailto:kontakt@fitnesspro.example">kontakt@fitnesspro.example</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Fitness Pro — Wszelkie prawa zastrzeżone</div>
+      <div class="muted">Polityka prywatności · Regulamin</div>
+    </footer>
+  </div>
+
+  <script>
+    // Ustaw rok w stopce
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu (prosty)
+    const ham = document.querySelector('.hamburger');
+    ham.addEventListener('click', ()=>{
+      const nav = document.querySelector('nav');
+      const expanded = ham.getAttribute('aria-expanded') === 'true';
+      ham.setAttribute('aria-expanded', !expanded);
+      if(nav.style.display === 'flex') nav.style.display = 'none'; else nav.style.display = 'flex';
+    });
+
+    // Prosta obsługa formularza (bez backendu) — symuluje wysyłkę
+    const form = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const contact = document.getElementById('contact').value.trim();
+      const consent = document.getElementById('consent').checked;
+      if(!name || !contact || !consent){
+        formMsg.textContent = 'Uzupełnij wymagane pola i zaakceptuj zgodę.';
+        return;
+      }
+      // Tutaj normalnie wyślesz fetch() do API. Na potrzeby statycznej strony pokazujemy podziękowanie.
+      formMsg.textContent = 'Dziękujemy! Twoja rezerwacja została przesłana.';
+      form.reset();
+      setTimeout(()=>{ formMsg.textContent = ''; },5000);
+    });
+
+    // Małe usprawnienia dostępności: focus-visible dla klawiatury
+    (function(){
+      function handleFirstTab(e){
+        if(e.key === 'Tab'){
+          document.documentElement.classList.add('user-is-tabbing');
+          window.removeEventListener('keydown', handleFirstTab);
+        }
+      }
+      window.addEventListener('keydown', handleFirstTab);
+    })();
+  </script>
+</body>
+</html>

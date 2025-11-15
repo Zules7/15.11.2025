@@ -1,0 +1,57 @@
+body {
+    height: 100%;
+    background: linear-gradient(180deg, #071021 0%, #081222 60%);
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+.menu {
+    width: 7%;
+    height: 5%;
+    float: left;
+    text-align: center;
+    font-size: medium;
+    color: gray;
+
+    
+    
+}
+#logo {
+   
+     width: 20%;
+    height: 10%;
+    color: white;
+    float: left;
+    margin-right: 40%;
+    margin-bottom: 20px;
+}
+#kontener {
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    height: 98%;
+}
+#zarezerwuj {
+    background-color: #ff6b6b;
+    border-radius: 7%;
+    width: 11%;
+    color: black;
+    margin-left: 1%;
+
+}
+#GodzOtwarcia {
+    color: #ff6b6b;
+    font-weight: bold;
+    clear: both;
+
+}
+aside {
+    float: right;
+    background-color: #ff6b6b;
+    width: 38%;
+    height: 200px;
+    padding: 0 20px ;
+    border-radius: 5%;
+    
+
+}
